@@ -33,6 +33,7 @@ __PACKAGE__->table_class("DBIx::Class::ResultSource::View");
 =cut
 
 __PACKAGE__->table("results");
+__PACKAGE__->result_source_instance->view_definition(" SELECT persons.id,\n    persons.login,\n    persons.realname,\n    persons.incumbent,\n    count(votes.*) AS votes\n   FROM (persons\n     JOIN votes ON ((persons.id = votes.candidate)))\n  GROUP BY persons.id, persons.login, persons.realname, persons.incumbent");
 
 =head1 ACCESSORS
 
@@ -87,8 +88,8 @@ __PACKAGE__->add_columns(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-03-10 19:05:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3syEv0rHN8n0xM1HxIPtWg
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2026-02-20 17:52:39
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rcNyYf9VVRMsaGHHpLO+2g
 
 1;
 
