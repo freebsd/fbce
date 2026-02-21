@@ -26,5 +26,9 @@ pkg install \
 
 In addition, you will need a database (PostgreSQL recommended) and the
 corresponding DBD module (p5-DBD-Pg).  See db/notes for information on
-how to create and populate the database.
+how to create and populate the database.  You may also need to install
+p5-Catalyst-Devel if you make changes to the database schema and need
+to regenerate the model.
 
+Finally, the user administration script uses sysutils/pwgen to
+generate passwords.
