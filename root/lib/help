@@ -1,4 +1,3 @@
-[%-# $FreeBSD$ -%]
 <h3>What is this?</h3>
 
 <p>This is the website for the [% descr | html %].  See the <a href="[% c.uri_for('/bylaws') | html %]">bylaws</a> and the schedule posted on the front page for additional information on the election rules.</p>

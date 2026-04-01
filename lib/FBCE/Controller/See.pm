@@ -58,5 +58,3 @@ it under the same terms as Perl itself.
 __PACKAGE__->meta->make_immutable;
 
 1;
-
-# $FreeBSD$

@@ -1,7 +1,4 @@
 #!/usr/bin/perl
-#
-# $FreeBSD$
-#
 
 use inc::Module::Install;
 use Module::Install::Catalyst;

@@ -1,4 +1,3 @@
-[%-# $FreeBSD$ -%]
 [% PROCESS lib/html_top %]
 [% PROCESS lib/header %]
 [% WRAPPER lib/main %]

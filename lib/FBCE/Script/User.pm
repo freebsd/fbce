@@ -374,8 +374,6 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
-# $FreeBSD$
-
 =head1 AUTHOR
 
 Dag-Erling Smørgrav

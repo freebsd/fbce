@@ -4,8 +4,6 @@
 # database.  Note that although this is a syntactically correct shell
 # script, it will not (or at least should not) run unmodified.
 #
-# $FreeBSD$
-#
 
 # Initialize PostgreSQL
 sudo service postgresql initdb

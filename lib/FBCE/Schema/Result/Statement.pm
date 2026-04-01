@@ -125,5 +125,3 @@ __PACKAGE__->belongs_to(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8wDb6dHYSG6Eoe9bdNnm8Q
 
 1;
-
-# $FreeBSD$

@@ -1,5 +1,5 @@
 --
--- $FreeBSD$
+-- Database schema for FreeBSD Core Elections
 --
 
 drop table if exists persons cascade;

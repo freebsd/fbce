@@ -1,4 +1,3 @@
-[%-# $FreeBSD$ -%]
 [% WRAPPER lib/html_top %]
 <script type="text/javascript">
   var total;

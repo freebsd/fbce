@@ -92,5 +92,3 @@ __PACKAGE__->add_columns(
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rcNyYf9VVRMsaGHHpLO+2g
 
 1;
-
-# $FreeBSD$

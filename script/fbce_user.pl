@@ -5,8 +5,6 @@ Catalyst::ScriptRunner->run('FBCE', 'User');
 
 1;
 
-# $FreeBSD$
-
 =encoding utf8
 
 =head1 NAME
