@@ -19,9 +19,12 @@ L<Template::Toolkit> filter plugin for L<Text::WikiFormat>
 =cut
 
 our $TAGS = {
+    # Use a single colon to introduce a line of code
     blocks => {
 	code => qr/^: /,
     },
+    # Prevent WikiFormat from inserting <br/> within paragraphs
+    paragraph => [ '<p>', "</p>\n", '', " \n", ],
 };
 
 our $OPTIONS = {
@@ -56,7 +59,9 @@ The filter function.
 sub filter {
     my ($self, $raw) = @_;
 
-    return Text::WikiFormat::format($raw, $TAGS, $OPTIONS);
+    my $parboiled = $raw =~ s/&/&amp;/gr =~ s/</&lt;/gr =~ s/>/&gt;/gr;
+    print(STDERR "$parboiled\n");
+    return Text::WikiFormat::format($parboiled, $TAGS, $OPTIONS);
 }
 
 =head1 AUTHOR

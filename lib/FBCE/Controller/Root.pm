@@ -132,7 +132,6 @@ The root page (/)
 
 sub index :Path :Args(0) {
     my ($self, $c) = @_;
-
 }
 
 =head2 index
@@ -143,7 +142,6 @@ Display the Project bylaws.
 
 sub bylaws :Local :Args(0) {
     my ($self, $c) = @_;
-
 }
 
 =head2 help
@@ -154,7 +152,16 @@ Display help text.
 
 sub help :Local :Args(0) {
     my ($self, $c) = @_;
+}
 
+=head2 wiki
+
+Describe the WikiFormat syntax.
+
+=cut
+
+sub wiki :Local :Args(0) {
+    my ($self, $c) = @_;
 }
 
 =head2 default

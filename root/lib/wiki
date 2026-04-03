@@ -1,0 +1,20 @@
+= Heading =
+== Subheading ==
+=== Subsubheading ===
+
+Ordinary text with '''bold''', ''italics'', and
+[https://www.freebsd.org/|hyperlinks] anywhere
+you like.
+
+Separate paragraphs with blank lines.
+
+    * unordered list
+    * unordered list
+
+    1. ordered list
+    2. ordered list
+
+: #include <stdio.h>
+: int main(void) {
+:     return printf("code\n") < 0;
+: }

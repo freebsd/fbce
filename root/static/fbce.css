@@ -227,3 +227,83 @@ th {
 
 .statement-body {
 }
+
+/*
+ * Poll
+ */
+.poll .synopsis {
+    font-size: large;
+}
+
+.poll .long {
+}
+
+/*
+ * Question
+ */
+.question .synopsis {
+}
+
+.question .short {
+    font-size: large;
+}
+
+.question .long {
+}
+
+/*
+ * Review
+ */
+.review .answer {
+    font-weight: bold;
+}
+
+/*
+ * Wiki text
+ */
+.wiki {
+}
+
+.wiki h1 {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.wiki h2 {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.wiki h3 {
+    font-size: 100%;
+    font-style: italic;
+}
+
+.wiki code {
+    font-family: monospace;
+    font-size: 90%;
+}
+
+/*
+ * Wiki syntax page
+ */
+.example {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-bottom: 1em;
+}
+
+.example .code {
+    width: 45%;
+    border: thin solid black;
+    padding: 1ex;
+    background-color: #eee;
+}
+
+.example .render {
+    width: 45%;
+    border: thin solid black;
+    padding: 1ex;
+    background-color: #eee;
+}

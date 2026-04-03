@@ -1,0 +1,21 @@
+[% USE WikiFormat %]
+[% PROCESS lib/html_top %]
+[% PROCESS lib/header %]
+[% WRAPPER lib/main %]
+
+<a name="wiki"></a>
+<h2>Wiki syntax</h2>
+<div class="example">
+<div class="code">
+<pre>
+[% PROCESS lib/wiki | html %]
+</pre>
+</div>
+<div class="render wiki">
+[% PROCESS lib/wiki | wiki %]
+</div>
+</div>
+
+[% END %]
+[% PROCESS lib/footer %]
+[% PROCESS lib/html_bottom %]
