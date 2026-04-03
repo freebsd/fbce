@@ -25,7 +25,7 @@ L<FBCE>
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav <des@freebsd.org>
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

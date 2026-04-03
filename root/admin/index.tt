@@ -1,10 +1,13 @@
+[% USE WikiFormat %]
 [% PROCESS lib/html_top %]
 [% PROCESS lib/header %]
 [% WRAPPER lib/main %]
 
 <h2>Election results</h2>
 
-[% IF voting < 0 %]
+[% IF !thisyear %]
+<p>No election is currently scheduled.</p>
+[% ELSIF voting < 0 %]
 <p>Voting has not yet started.</p>
 [% ELSE %]
 [% IF voting == 0 %]
@@ -37,6 +40,38 @@
   </tr>
   [% END %]
 </table>
+[% END %]
+[% END %]
+
+<h2>Poll results</h2>
+
+[% IF polls.count == 0 %]
+<p>There are no active polls at present.</p>
+[% ELSE %]
+[% WHILE (poll = polls.next) %]
+<h3><a href="[% c.uri_for('/poll', poll.id, 'result') | html %]">[% poll.title | html%]</a></h3>
+[% IF now < poll.ends %]
+<p>NOTE: Voting is still ongoing&mdash;these are not the final results!</p>
+[% END %]
+[% FOREACH question IN poll.questions %]
+<div class="short">
+[% question.short | wiki %]
+</div>
+<table>
+<tr>
+<th>Option</th>
+<th>Votes</th>
+<th>Percentage</th>
+</tr>
+[% FOREACH option IN question.options %]
+<td>[% option.label | html %]</td>
+<td>[% IF question.votes_rs.count > 0 %][% option.votes_rs.count %]%[% ELSE %]-[% END %]</td>
+<td>[% IF question.votes_rs.count > 0 %][% Math.int(option.votes_rs.count * 100 / question.votes_rs.count) %]%[% ELSE %]-[% END %]</td>
+</tr>
+[% END %]
+</table>
+[% END %]
+
 [% END %]
 [% END %]
 

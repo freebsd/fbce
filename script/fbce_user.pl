@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 
+use utf8;
 use Catalyst::ScriptRunner;
 Catalyst::ScriptRunner->run('FBCE', 'User');
 

@@ -40,7 +40,7 @@
 
 [% PROCESS vote/when %]
 
-[% IF !user.active %]
+[% IF !c.user.active %]
 <p>You are not qualified to vote in the election.  If you believe this is incorrect, please contact the election administrator.</p>
 [% ELSIF voting == 0 %]
   [% IF candidates.count == 0 %]

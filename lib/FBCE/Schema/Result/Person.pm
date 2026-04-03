@@ -13,7 +13,10 @@ FBCE::Schema::Result::Person
 use strict;
 use warnings;
 
-use base 'DBIx::Class::Core';
+use Moose;
+use MooseX::NonMoose;
+use MooseX::MarkAsMethods autoclean => 1;
+extends 'DBIx::Class::Core';
 
 =head1 COMPONENTS LOADED
 
@@ -160,6 +163,66 @@ __PACKAGE__->add_unique_constraint("persons_login_key", ["login"]);
 
 =head1 RELATIONS
 
+=head2 core_votes_candidates
+
+Type: has_many
+
+Related object: L<FBCE::Schema::Result::CoreVote>
+
+=cut
+
+__PACKAGE__->has_many(
+  "core_votes_candidates",
+  "FBCE::Schema::Result::CoreVote",
+  { "foreign.candidate" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 core_votes_voters
+
+Type: has_many
+
+Related object: L<FBCE::Schema::Result::CoreVote>
+
+=cut
+
+__PACKAGE__->has_many(
+  "core_votes_voters",
+  "FBCE::Schema::Result::CoreVote",
+  { "foreign.voter" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 poll_votes
+
+Type: has_many
+
+Related object: L<FBCE::Schema::Result::PollVote>
+
+=cut
+
+__PACKAGE__->has_many(
+  "poll_votes",
+  "FBCE::Schema::Result::PollVote",
+  { "foreign.voter" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+=head2 polls
+
+Type: has_many
+
+Related object: L<FBCE::Schema::Result::Poll>
+
+=cut
+
+__PACKAGE__->has_many(
+  "polls",
+  "FBCE::Schema::Result::Poll",
+  { "foreign.owner" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 statement
 
 Type: might_have
@@ -175,39 +238,9 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-=head2 votes_candidates
 
-Type: has_many
-
-Related object: L<FBCE::Schema::Result::Vote>
-
-=cut
-
-__PACKAGE__->has_many(
-  "votes_candidates",
-  "FBCE::Schema::Result::Vote",
-  { "foreign.candidate" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 votes_voters
-
-Type: has_many
-
-Related object: L<FBCE::Schema::Result::Vote>
-
-=cut
-
-__PACKAGE__->has_many(
-  "votes_voters",
-  "FBCE::Schema::Result::Vote",
-  { "foreign.voter" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-03-10 19:05:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:40qaS/evx1U+HUHTXygyFQ
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2026-04-01 13:37:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:mCP8lTGvbveQ/M0ddcWixA
 
 use Crypt::SaltedHash;
 use Digest::MD5 qw(md5_hex);
@@ -215,7 +248,7 @@ use Digest::MD5 qw(md5_hex);
 #
 # Change the password.
 #
-sub set_password($$) {
+sub set_password {
     my ($self, $password) = @_;
 
     if ($password !~ m/^[[:print:]]{8,}$/a || $password !~ m/[0-9]/a ||
@@ -234,7 +267,7 @@ sub set_password($$) {
 #
 # Check the password.
 #
-sub check_password($$) {
+sub check_password {
     my ($self, $password) = @_;
 
     return Crypt::SaltedHash->validate($self->password, $password);
@@ -243,7 +276,7 @@ sub check_password($$) {
 #
 # Reset the password.
 #
-sub reset_password($) {
+sub reset_password {
     my ($self) = @_;
 
     $self->set_column(password => '*');
@@ -254,7 +287,7 @@ sub reset_password($) {
 #
 # Pretty name
 #
-sub name($) {
+sub name {
     my ($self) = @_;
 
     return $self->realname || ($self->login . '@freebsd.org');
@@ -263,7 +296,7 @@ sub name($) {
 #
 # Commit votes
 #
-sub commit($) {
+sub commit {
     my ($self) = @_;
 
     my $schema = $self->result_source->schema;
@@ -279,7 +312,7 @@ sub commit($) {
 #
 # Email address
 #
-sub email($) {
+sub email {
     my ($self) = @_;
 
     return $self->login . "\@freebsd.org";
@@ -288,7 +321,7 @@ sub email($) {
 #
 # Gravatar URL
 #
-sub gravatar($;$) {
+sub gravatar {
     my ($self, $scheme) = @_;
 
     my $md5 = md5_hex($self->email);
@@ -299,4 +332,9 @@ sub gravatar($;$) {
     }
 }
 
+1;
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
 1;

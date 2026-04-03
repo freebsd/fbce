@@ -13,7 +13,10 @@ FBCE::Schema::Result::Result
 use strict;
 use warnings;
 
-use base 'DBIx::Class::Core';
+use Moose;
+use MooseX::NonMoose;
+use MooseX::MarkAsMethods autoclean => 1;
+extends 'DBIx::Class::Core';
 
 =head1 COMPONENTS LOADED
 
@@ -33,7 +36,7 @@ __PACKAGE__->table_class("DBIx::Class::ResultSource::View");
 =cut
 
 __PACKAGE__->table("results");
-__PACKAGE__->result_source_instance->view_definition(" SELECT persons.id,\n    persons.login,\n    persons.realname,\n    persons.incumbent,\n    count(votes.*) AS votes\n   FROM (persons\n     JOIN votes ON ((persons.id = votes.candidate)))\n  GROUP BY persons.id, persons.login, persons.realname, persons.incumbent");
+__PACKAGE__->result_source_instance->view_definition(" SELECT persons.id,\n    persons.login,\n    persons.realname,\n    persons.incumbent,\n    count(core_votes.*) AS votes\n   FROM (persons\n     JOIN core_votes ON ((persons.id = core_votes.candidate)))\n  GROUP BY persons.id, persons.login, persons.realname, persons.incumbent");
 
 =head1 ACCESSORS
 
@@ -88,7 +91,12 @@ __PACKAGE__->add_columns(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2026-02-20 17:52:39
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:rcNyYf9VVRMsaGHHpLO+2g
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2026-04-01 13:37:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jpsMYPAIzYtTgLFy8TbCgA
 
+1;
+
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
 1;

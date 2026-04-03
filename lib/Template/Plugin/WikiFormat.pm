@@ -38,7 +38,7 @@ The initialization function.
 
 =cut
 
-sub init($) {
+sub init {
     my ($self) = @_;
 
     my $name = $self->{_CONFIG}->{name} || 'wiki';
@@ -53,7 +53,7 @@ The filter function.
 
 =cut
 
-sub filter($$) {
+sub filter {
     my ($self, $raw) = @_;
 
     return Text::WikiFormat::format($raw, $TAGS, $OPTIONS);
@@ -61,7 +61,7 @@ sub filter($$) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav <des@freebsd.org>
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

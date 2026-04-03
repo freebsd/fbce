@@ -55,6 +55,12 @@ __PACKAGE__->config(
     disable_component_resolution_regex_fallback => 1,
 );
 
+sub now {
+    my ($self) = @_;
+
+    $self->stash->{now} //= DateTime->now();
+}
+
 # Start the application
 __PACKAGE__->setup();
 
@@ -76,7 +82,7 @@ L<FBCE::Controller::Root>, L<Catalyst>
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

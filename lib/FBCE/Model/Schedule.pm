@@ -1,3 +1,4 @@
+use utf8;
 package FBCE::Model::Schedule;
 use Moose;
 use MooseX::Types::Common::Numeric qw(PositiveInt);
@@ -5,11 +6,11 @@ use MooseX::Types::DateTime::MoreCoercions qw(DateTime Duration);
 use DateTime;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Component' }
+extends 'Catalyst::Model';
 
 =head1 NAME
 
-FBCE::Controller - Catalyst Controller
+FBCE::Model::Schedule - Catalyst Model
 
 =head1 DESCRIPTION
 
@@ -59,7 +60,7 @@ has investiture => (
     required => 1
 );
 
-sub _phase($$$) {
+sub _phase {
     my ($self, $phase, $now) = @_;
 
     $now //= main::DateTime->now();
@@ -74,19 +75,30 @@ sub _phase($$$) {
     }
 }
 
-sub nominating($;$) {
+sub thisyear {
+    my ($self, $now) = @_;
+
+    $now //= main::DateTime->now();
+    if ($now->year == $self->{'nominating_starts'}->year ||
+	$now->year == $self->{'announcement'}->year) {
+	return 1;
+    }
+    return 0;
+}
+
+sub nominating {
     my ($self, $now) = @_;
 
     return $self->_phase('nominating', $now);
 }
 
-sub voting($;$) {
+sub voting {
     my ($self, $now) = @_;
 
     return $self->_phase('voting', $now);
 }
 
-sub announced($;$) {
+sub announced {
     my ($self, $now) = @_;
 
     return (main::DateTime->compare($now, $self->{'announcement'}) > 0);
@@ -94,7 +106,7 @@ sub announced($;$) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

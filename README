@@ -19,6 +19,7 @@ pkg install \
     p5-Catalyst-Runtime \
     p5-Catalyst-View-TT \
     p5-Crypt-SaltedHash \
+    p5-DateTime-Format-Pg \
     p5-FCGI-Engine \
     p5-MooseX-Types-Common \
     p5-MooseX-Types-DateTime-MoreCoercions \

@@ -1,19 +1,22 @@
 use utf8;
-package FBCE::Schema::Result::Vote;
+package FBCE::Schema::Result::CoreVote;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-FBCE::Schema::Result::Vote
+FBCE::Schema::Result::CoreVote
 
 =cut
 
 use strict;
 use warnings;
 
-use base 'DBIx::Class::Core';
+use Moose;
+use MooseX::NonMoose;
+use MooseX::MarkAsMethods autoclean => 1;
+extends 'DBIx::Class::Core';
 
 =head1 COMPONENTS LOADED
 
@@ -27,11 +30,11 @@ use base 'DBIx::Class::Core';
 
 __PACKAGE__->load_components("InflateColumn::DateTime");
 
-=head1 TABLE: C<votes>
+=head1 TABLE: C<core_votes>
 
 =cut
 
-__PACKAGE__->table("votes");
+__PACKAGE__->table("core_votes");
 
 =head1 ACCESSORS
 
@@ -40,7 +43,7 @@ __PACKAGE__->table("votes");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
-  sequence: 'votes_id_seq'
+  sequence: 'core_votes_id_seq'
 
 =head2 voter
 
@@ -62,7 +65,7 @@ __PACKAGE__->add_columns(
     data_type         => "integer",
     is_auto_increment => 1,
     is_nullable       => 0,
-    sequence          => "votes_id_seq",
+    sequence          => "core_votes_id_seq",
   },
   "voter",
   { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
@@ -84,7 +87,7 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<votes_voter_candidate_key>
+=head2 C<core_votes_voter_candidate_key>
 
 =over 4
 
@@ -96,7 +99,7 @@ __PACKAGE__->set_primary_key("id");
 
 =cut
 
-__PACKAGE__->add_unique_constraint("votes_voter_candidate_key", ["voter", "candidate"]);
+__PACKAGE__->add_unique_constraint("core_votes_voter_candidate_key", ["voter", "candidate"]);
 
 =head1 RELATIONS
 
@@ -131,7 +134,10 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07039 @ 2014-03-10 19:05:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:PPKd4x4Ik0n9U6JnJ5e4hA
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2026-04-01 13:37:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:F6me1FgiQSWtYuqhoNsGLA
 
+
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
+__PACKAGE__->meta->make_immutable;
 1;

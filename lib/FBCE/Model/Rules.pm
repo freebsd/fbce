@@ -1,3 +1,4 @@
+use utf8;
 package FBCE::Model::Rules;
 use Moose;
 use MooseX::Types::Common::Numeric qw(PositiveInt);
@@ -5,15 +6,15 @@ use MooseX::Types::DateTime::MoreCoercions qw(Duration);
 use DateTime;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Component' }
+extends 'Catalyst::Model';
 
 =head1 NAME
 
-FBCE::Controller - Catalyst Controller
+FBCE::Model::Rules - Catalyst Model
 
 =head1 DESCRIPTION
 
-Catalyst Controller.
+Catalyst Model.
 
 =cut
 
@@ -32,7 +33,7 @@ has cutoff => (
 
 our $cutoff_date;
 
-sub cutoff_date($) {
+sub cutoff_date {
     my ($self) = @_;
 
     if (!defined($cutoff_date)) {
@@ -45,7 +46,7 @@ sub cutoff_date($) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

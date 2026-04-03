@@ -1,0 +1,45 @@
+[% USE Math %]
+[% USE WikiFormat %]
+[% PROCESS lib/html_top %]
+[% PROCESS lib/header %]
+[% WRAPPER lib/main %]
+
+<div class="result">
+<div class="wiki synopsis">
+[% poll.synopsis | wiki %]
+</div>
+[% IF error %]
+<div class="error">
+<p>[% error | html %]</p>
+</div>
+[% ELSIF now < poll.starts %]
+<p>This poll has not started yet.</p>
+[% ELSIF poll.votes_rs.count == 0 %]
+<p>No votes have been cast yet.</p>
+[% ELSE %]
+<p>Here are the[% IF now < poll.ends %] preliminary[% END %] results of the poll:</p>
+<p>[% IF poll.votes_rs.count == 1 %]One vote has[% ELSE %][% poll.votes_rs.count %] votes have[% END %] been cast by [% IF poll.voters_rs.count == 1 %]one voter[% ELSE %][% poll.voters_rs.count %] voters[% END %].</p>
+[% FOREACH question IN poll.questions %]
+<div class="short">
+[% question.short | wiki %]
+</div>
+<table>
+<tr>
+<th>Option</th>
+<th>Votes</th>
+<th>Percentage</th>
+</tr>
+[% FOREACH option IN question.options %]
+<td>[% option.label | html %]</td>
+<td>[% IF question.votes_rs.count > 0 %][% option.votes_rs.count %]%[% ELSE %]-[% END %]</td>
+<td>[% IF question.votes_rs.count > 0 %][% Math.int(option.votes_rs.count * 100 / question.votes_rs.count) %]%[% ELSE %]-[% END %]</td>
+</tr>
+[% END %]
+</table>
+[% END %]
+[% END %]
+</div>
+
+[% END %]
+[% PROCESS lib/footer %]
+[% PROCESS lib/html_bottom %]

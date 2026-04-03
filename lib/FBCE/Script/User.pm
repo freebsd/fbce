@@ -47,7 +47,7 @@ has pwfile => (
 #
 # Read a list of users.
 #
-sub _read_users($@) {
+sub _read_users {
     my ($self, @argv) = @_;
 
     my %users;
@@ -76,7 +76,7 @@ sub _read_users($@) {
 #
 # Activate or deactivate named users
 #
-sub _set_active($$@) {
+sub _set_active {
     my ($self, $active, @users) = @_;
 
     my $persons = FBCE->model('FBCE::Person');
@@ -101,7 +101,7 @@ sub _set_active($$@) {
 #
 # Mark named users as incumbent or not
 #
-sub _set_incumbent($$@) {
+sub _set_incumbent {
     my ($self, $incumbent, @users) = @_;
 
     my $persons = FBCE->model('FBCE::Person');
@@ -126,7 +126,7 @@ sub _set_incumbent($$@) {
 #
 # List existing users
 #
-sub cmd_list($@) {
+sub cmd_list {
     my ($self, @argv) = @_;
 
     die("too many arguments")
@@ -152,7 +152,7 @@ sub cmd_list($@) {
 #
 # Mark all users inactive
 #
-sub cmd_smash($@) {
+sub cmd_smash {
     my ($self, @argv) = @_;
 
     die("too many arguments")
@@ -171,7 +171,7 @@ sub cmd_smash($@) {
 #
 # Activate named users
 #
-sub cmd_activate(@) {
+sub cmd_activate {
     my ($self, @argv) = @_;
 
     my $users = $self->_read_users(@argv);
@@ -181,7 +181,7 @@ sub cmd_activate(@) {
 #
 # Deactivate named users
 #
-sub cmd_deactivate(@) {
+sub cmd_deactivate {
     my ($self, @argv) = @_;
 
     my $users = $self->_read_users(@argv);
@@ -191,7 +191,7 @@ sub cmd_deactivate(@) {
 #
 # Mark the specified user(s) as incumbent
 #
-sub cmd_incumbent(@) {
+sub cmd_incumbent {
     my ($self, @argv) = @_;
 
     my $users = $self->_read_users(@argv);
@@ -202,7 +202,7 @@ sub cmd_incumbent(@) {
 # Read a list of users from a file and create corresponding database
 # records.  This will not touch existing users.
 #
-sub cmd_import(@) {
+sub cmd_import {
     my ($self, @argv) = @_;
 
     my $users = $self->_read_users(@argv);
@@ -227,7 +227,7 @@ sub cmd_import(@) {
 # Users that are listed in the file but not in the database will be
 # ignored.
 #
-sub cmd_gecos($@) {
+sub cmd_gecos {
     my ($self, @argv) = @_;
 
     my $users = $self->_read_users(@argv);
@@ -247,7 +247,7 @@ sub cmd_gecos($@) {
 #
 # Use sysutils/pwgen to generate random passwords
 #
-sub pwgen($$;$) {
+sub pwgen {
     my ($self, $n, $len) = @_;
 
     $len ||= 12;
@@ -298,7 +298,7 @@ sub pwgen($$;$) {
 # Generate passwords users that don't already have one.  Use with
 # caution!
 #
-sub cmd_pwgen($@) {
+sub cmd_pwgen {
     my ($self, @argv) = @_;
 
     die("too many arguments")
@@ -341,7 +341,7 @@ sub cmd_pwgen($@) {
     });
 }
 
-sub run($) {
+sub run {
     my ($self) = @_;
 
     local $ENV{CATALYST_DEBUG} = 1
@@ -376,7 +376,7 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

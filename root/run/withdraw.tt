@@ -2,9 +2,9 @@
 [% PROCESS lib/header %]
 [% WRAPPER lib/main %]
 
-[% IF !user.active %]
+[% IF !c.user.active %]
 <p>You are not qualified to run in the election.  If you believe this is incorrect, please contact the election administrator.</p>
-[% ELSIF !user.statement.defined %]
+[% ELSIF !c.user.statement.defined %]
 <p>You have not registered as a candidate.</p>
 [% ELSE %]
 <p>Are you sure you want to withdraw your candidacy?  Note that your statement will be permanently deleted from the database; if you change your mind, you will have to start over.</p>

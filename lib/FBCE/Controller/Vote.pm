@@ -1,8 +1,9 @@
+use utf8;
 package FBCE::Controller::Vote;
 use Moose;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
+BEGIN { extends 'FBCE::Controller' }
 
 =head1 NAME
 
@@ -52,9 +53,9 @@ sub index :Path :Args(0) {
 	} else {
 	    my $schema = $user->result_source->schema;
 	    $schema->txn_do(sub {
-		$user->votes_voters->delete();
+		$user->core_votes_voters->delete();
 		while (my ($login, $candidate) = each %vote_for) {
-		    $user->votes_voters->create({ candidate => $candidate });
+		    $user->core_votes_voters->create({ candidate => $candidate });
 		}
 	    });
 	    if ($@) {
@@ -64,7 +65,7 @@ sub index :Path :Args(0) {
 	    }
 	}
     } else {
-	my $votes = $user->votes_voters;
+	my $votes = $user->core_votes_voters;
 	while (my $vote = $votes->next) {
 	    $voted_for{$vote->candidate->login} = 1;
 	}
@@ -98,7 +99,7 @@ sub index :Path :Args(0) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

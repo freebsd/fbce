@@ -1,8 +1,11 @@
+use utf8;
 package FBCE::Controller::See;
 use Moose;
-use namespace::autoclean;
+use MooseX::MethodAttributes;
+use MooseX::Types::Moose qw(Str);
+use namespace::autoclean -except => 'Str';
 
-BEGIN { extends 'Catalyst::Controller' }
+BEGIN { extends 'FBCE::Controller' }
 
 =head1 NAME
 
@@ -31,7 +34,7 @@ sub index :Path :Args(0) {
     $c->stash(candidates => $candidates);
 }
 
-sub candidate :Local :Args(1) {
+sub candidate :Local :Args(Str) {
     my ($self, $c, $name) = @_;
 
     my $user = $c->user->get_object();
@@ -46,7 +49,7 @@ sub candidate :Local :Args(1) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

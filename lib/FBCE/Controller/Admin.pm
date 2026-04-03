@@ -1,8 +1,9 @@
+use utf8;
 package FBCE::Controller::Admin;
 use Moose;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
+BEGIN { extends 'FBCE::Controller' }
 
 =head1 NAME
 
@@ -33,9 +34,9 @@ sub index :Path :Args(0) {
 	search_rs({ active => 1 }, { order_by => 'login' });
     my $candidates = $c->model('FBCE::Statement')->
 	search_related_rs('person', {}, { order_by => 'login' });
-    my $voted = $c->model('FBCE::Vote')->
+    my $voted = $c->model('FBCE::CoreVote')->
 	search_related_rs('voter', {}, { distinct => 1 });
-    my $votes = $c->model('FBCE::Vote');
+    my $votes = $c->model('FBCE::CoreVote');
     my $results = $c->model('FBCE::Result')->
 	search_rs(undef, { order_by => [ { -desc => 'votes' }, { -asc => 'login' } ] });
     $c->stash(voters => $voters);
@@ -48,7 +49,7 @@ sub index :Path :Args(0) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 

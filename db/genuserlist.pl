@@ -8,12 +8,12 @@ my $haveuid = 0;
 my $havekey = 0;
 my $uid = '';
 
-sub usage() {
+sub usage {
     print "Usage: $ARGV[0] /path/to/ldap/data\n";
     exit (1);
 }
 
-sub main() {
+sub main {
     if (!$ARGV[0]) {
 	&usage();
     }

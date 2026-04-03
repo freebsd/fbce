@@ -5,15 +5,15 @@
 
 [% PROCESS run/when %]
 
-[% IF !user.active %]
+[% IF !c.user.active %]
 <p>You are not qualified to run in the election.  If you believe this is incorrect, please contact the election administrator.</p>
-[% ELSIF user.statement.defined %]
+[% ELSIF c.user.statement.defined %]
 <p>You have registered as a candidate in the [% title %].  You have provided the following statement:</p>
 
 <div class="statement"> 
-  <h3 class="statement-title">[% user.statement.short | wiki %]</h3>
+  <h3 class="statement-title">[% c.user.statement.short | wiki %]</h3>
   <div class="statement-body">
-    [% user.statement.long | wiki %]
+    [% c.user.statement.long | wiki %]
   </div>
 </div>
   [% IF nominating == 0 %]

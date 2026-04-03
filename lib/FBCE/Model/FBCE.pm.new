@@ -1,4 +1,3 @@
-use utf8;
 package FBCE::Model::FBCE;
 
 use strict;
@@ -6,6 +5,13 @@ use base 'Catalyst::Model::DBIC::Schema';
 
 __PACKAGE__->config(
     schema_class => 'FBCE::Schema',
+    
+    connect_info => {
+        dsn => 'dbi:Pg:dbname=fbce',
+        user => 'fbce',
+        password => '',
+        pg_enable_utf8 => q{1},
+    }
 );
 
 =head1 NAME
@@ -26,7 +32,7 @@ Catalyst::Helper::Model::DBIC::Schema - 0.66
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav <des@FreeBSD.org>
+Dag-Erling Smørgrav
 
 =head1 LICENSE
 

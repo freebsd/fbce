@@ -1,8 +1,9 @@
+use utf8;
 package FBCE::Controller::Run;
 use Moose;
 use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller' }
+BEGIN { extends 'FBCE::Controller' }
 
 =head1 NAME
 
@@ -119,7 +120,7 @@ sub withdraw :Local :Args(0) {
 
 =head1 AUTHOR
 
-Dag-Erling Smørgrav
+Dag-Erling Smørgrav <des@FreeBSD.org>
 
 =head1 LICENSE
 
