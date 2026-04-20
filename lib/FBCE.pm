@@ -28,6 +28,7 @@ __PACKAGE__->config(
     name => 'FBCE',
     view => 'HTML',
     encoding => 'UTF-8',
+    using_frontend_proxy => 1,
     'Plugin::ConfigLoader' => {
 	substitutions => {
 	    UID => sub { $< },
