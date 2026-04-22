@@ -13,7 +13,7 @@
 <form method="post" action="">
   <p>Slogan (optional)</p>
   <input name="short" size="80" maxlength="64" value="[% short | html %]"/>
-  <p>Statement (<a href="/wiki">WikiFormat</a>)</p>
+  <p>Statement (<a href="[% c.uri_for('/wiki') | html %]">WikiFormat</a>)</p>
   <textarea name="long" cols="80" rows="24">[% long | html %]</textarea>
   </fieldset>
   <div>
