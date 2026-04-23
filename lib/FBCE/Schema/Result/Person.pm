@@ -332,6 +332,24 @@ sub gravatar {
     }
 }
 
+#
+# Number of votes cast in election
+#
+sub votes_cast {
+    my ($self) = @_;
+
+    $self->core_votes_candidates->count()
+}
+
+#
+# Number of votes received in election
+#
+sub votes_received {
+    my ($self) = @_;
+
+    return $self->core_votes_voters->count()
+}
+
 1;
 
 

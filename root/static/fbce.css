@@ -177,6 +177,13 @@ th {
 }
 
 /*
+ * User information
+ */
+.user th, .user td {
+    padding: 0.5ex
+}
+
+/*
  * Candidate
  */
 .candidate-portrait {

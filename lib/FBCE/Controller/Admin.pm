@@ -25,7 +25,7 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    my $user = $c->user->get_object();
+    my $user = $self->require_user($c);
     if (!$user->admin) {
 	$c->res->redirect($c->uri_for('/'));
 	$c->detach();

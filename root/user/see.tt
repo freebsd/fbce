@@ -1,0 +1,51 @@
+[% USE Boolean %]
+[% PROCESS lib/html_top %]
+[% PROCESS lib/header %]
+[% WRAPPER lib/main %]
+
+<h1>[% person.realname | html %] ([% person.login %])</h1>
+
+<table class="user">
+  <tr>
+    <th>Login</th>
+    <td>[% person.login %]</td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td>[% person.realname | html %]</td>
+  </tr>
+  <tr>
+    <th>Administrator</th>
+    <td>[% person.admin | boolean %]</td>
+  </tr>
+  <tr>
+    <th>Active</th>
+    <td>[% person.active | boolean %]</td>
+  </tr>
+  <tr>
+    <th>Incumbent</th>
+    <td>[% person.incumbent | boolean %]</td>
+  </tr>
+[% IF nominating >= 0 %]
+  <tr>
+    <th>Candidate</th>
+    <td>[% IF person.statement %]<a href="[% c.uri_for('/see/candidate', person.login) %]">true</a>[% ELSE %]false[% END %]</td>
+  </tr>
+[% IF voting >= 0 %]
+  <tr>
+    <th>Votes cast</th>
+    <td>[% person.votes_cast %]</td>
+  </tr>
+[% IF person.statement %]
+  <tr>
+    <th>Votes received</th>
+    <td>[% person.votes_received %]</td>
+  </tr>
+[% END %]
+[% END %]
+[% END %]
+</table>
+
+[% END %]
+[% PROCESS lib/footer %]
+[% PROCESS lib/html_bottom %]
