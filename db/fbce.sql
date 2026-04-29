@@ -44,10 +44,11 @@ create table core_votes (
         foreign key(candidate) references persons(id) on delete cascade on update cascade
 );
 
-drop view if exists core_results;
+drop view if exists results;
 create view results as
     select persons.id, persons.login as login, persons.realname as realname, persons.incumbent, count(core_votes.*) as votes
     from persons join core_votes on persons.id = core_votes.candidate
+    where votes > 0
     group by persons.id, persons.login, persons.realname, persons.incumbent;
 
 --
