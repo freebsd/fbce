@@ -60,7 +60,6 @@ sub filter {
     my ($self, $raw) = @_;
 
     my $parboiled = $raw =~ s/&/&amp;/gr =~ s/</&lt;/gr =~ s/>/&gt;/gr;
-    print(STDERR "$parboiled\n");
     return Text::WikiFormat::format($parboiled, $TAGS, $OPTIONS);
 }
 
