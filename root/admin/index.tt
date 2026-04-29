@@ -31,7 +31,6 @@
   [% i = 0 %]
   [% WHILE (candidate = results.next) %]
   [% i = i + 1 %]
-  [% login = results.login %]
   <tr>
     <td class="num">[% i %]</td>
     <td class="num">[% candidate.votes %]</td>

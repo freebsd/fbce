@@ -38,7 +38,8 @@ sub index :Path :Args(0) {
 	search_related_rs('voter', {}, { distinct => 1 });
     my $votes = $c->model('FBCE::CoreVote');
     my $results = $c->model('FBCE::Result')->
-	search_rs(undef, { order_by => [ { -desc => 'votes' }, { -asc => 'login' } ] });
+	search_rs({ 'votes' => { '>', 0 } },
+		  { order_by => [ { -desc => 'votes' }, { -asc => 'login' } ] });
     $c->stash(voters => $voters);
     $c->stash(candidates => $candidates);
     $c->stash(voted => $voted);
