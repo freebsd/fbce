@@ -15,6 +15,16 @@
 [% END %]
 [% END %]
 
+[% IF polls.count > 0 %]
+<p>The following [% IF polls.count > 1 %]polls are[% ELSE %]poll is[% END %] currently in progress:</p>
+<dl>
+[% WHILE (poll = polls.next) %]
+<dt><a href="[% c.uri_for('/poll', poll.id) | html %]">[% poll.title | html%]</a></dt>
+<dd class="wiki synopsis">[% poll.synopsis | wiki %]</dd>
+[% END %]
+</dl>
+[% END %]
+
 [% END %]
 [% PROCESS lib/footer %]
 [% PROCESS lib/html_bottom %]
