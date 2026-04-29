@@ -1,6 +1,17 @@
+[% USE WikiFormat %]
 [% PROCESS lib/html_top %]
 [% PROCESS lib/header %]
 [% WRAPPER lib/main %]
+
+[% IF polls.count > 0 %]
+<p>The following [% IF polls.count > 1 %]polls are[% ELSE %]poll is[% END %] currently in progress:</p>
+<dl>
+[% WHILE (poll = polls.next) %]
+<dt><a href="[% c.uri_for('/poll', poll.id) | html %]">[% poll.title | html%]</a></dt>
+<dd class="wiki synopsis">[% poll.synopsis | wiki %]</dd>
+[% END %]
+</dl>
+[% END %]
 
 [% IF !thisyear %]
 <p>No election this year.</p>
@@ -13,16 +24,6 @@
 [% IF announced %]
 <p>The <a href="[% c.uri_for('/result') | html %]">official result</a> is now available.</p>
 [% END %]
-[% END %]
-
-[% IF polls.count > 0 %]
-<p>The following [% IF polls.count > 1 %]polls are[% ELSE %]poll is[% END %] currently in progress:</p>
-<dl>
-[% WHILE (poll = polls.next) %]
-<dt><a href="[% c.uri_for('/poll', poll.id) | html %]">[% poll.title | html%]</a></dt>
-<dd class="wiki synopsis">[% poll.synopsis | wiki %]</dd>
-[% END %]
-</dl>
 [% END %]
 
 [% END %]
