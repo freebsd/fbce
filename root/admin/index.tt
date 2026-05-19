@@ -63,10 +63,11 @@
 <th>Votes</th>
 <th>Percentage</th>
 </tr>
+<p>[% question.votes_rs.count %] out of [% voters.count %] voters ([% question.votes_rs.count / voters.count * 100 | format('%.1f') %]%) have voted.</p>
 [% FOREACH option IN question.options %]
 <td>[% option.label | html %]</td>
 <td>[% IF question.votes_rs.count > 0 %][% option.votes_rs.count %][% ELSE %]-[% END %]</td>
-<td>[% IF question.votes_rs.count > 0 %][% Math.int(option.votes_rs.count * 100 / question.votes_rs.count) %]%[% ELSE %]-[% END %]</td>
+<td>[% IF question.votes_rs.count > 0 %][% option.votes_rs.count * 100 / question.votes_rs.count | format('%.1f') %]%[% ELSE %]-[% END %]</td>
 </tr>
 [% END %]
 </table>
