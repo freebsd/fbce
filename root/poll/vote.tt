@@ -33,7 +33,7 @@
 </div>
 [% END %]
 <input type="submit" name="prev" value="Previous question"[% IF !question.prev %]disabled="disabled"[% END %]/>
-<input type="submit" name="done" value="I'm done"/>
+<input type="submit" name="done" value="Review and submit"/>
 <input type="submit" name="next" value="Next question"[% IF !question.next %]disabled="disabled"[% END %]/>
 </div>
 </form>
