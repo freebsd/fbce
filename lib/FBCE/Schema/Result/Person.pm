@@ -333,6 +333,15 @@ sub gravatar {
 }
 
 #
+# Number of votes cast in polls
+#
+sub poll_votes_cast {
+    my ($self) = @_;
+
+    $self->poll_votes->count()
+}
+
+#
 # Number of votes cast in election
 #
 sub votes_cast {

@@ -42,6 +42,12 @@
     <td>[% person.votes_received %]</td>
   </tr>
 [% END %]
+[% IF polls.count > 0 %]
+  <tr>
+    <th>Poll questions answered</th>
+    <td>[% person.poll_votes_cast %]</td>
+  </tr>
+[% END %]
 [% END %]
 [% END %]
 </table>
