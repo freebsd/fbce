@@ -338,7 +338,7 @@ sub gravatar {
 sub votes_cast {
     my ($self) = @_;
 
-    $self->core_votes_candidates->count()
+    $self->core_votes_voters->count()
 }
 
 #
@@ -347,7 +347,7 @@ sub votes_cast {
 sub votes_received {
     my ($self) = @_;
 
-    return $self->core_votes_voters->count()
+    return $self->core_votes_candidates->count()
 }
 
 1;
